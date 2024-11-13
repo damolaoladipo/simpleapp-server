@@ -1,5 +1,6 @@
 
-![Simple.io Logo](./simple-dark.png)
+<img src="simple-dark.png" alt="Simple.io Logo" width="150">
+=======
 
 ## Simple.io Application (Server-Side)
 
