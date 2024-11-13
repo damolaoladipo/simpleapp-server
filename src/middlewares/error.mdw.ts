@@ -1,6 +1,6 @@
 import {Request, Response, NextFunction } from "express";
-import ENV from "../utils/env.utils";
-import ErrorResponse from "../utils/error.utils";
+import ENV from "../utils/env.util";
+import ErrorResponse from "../utils/error.util";
 
 const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
     let message: string = ""

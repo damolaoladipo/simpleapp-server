@@ -3,8 +3,8 @@ import express, { Request, Response, NextFunction } from "express";
 import cors from 'cors'
 import errorHandler from "../middlewares/error.mdw";
 import helmet from "helmet";
-import { ENVType } from "../utils/enum.utils";
-import ENV from "../utils/env.utils";
+import { ENVType } from "../utils/enum.util";
+import ENV from "../utils/env.util";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import expressSanitize from "express-mongo-sanitize";

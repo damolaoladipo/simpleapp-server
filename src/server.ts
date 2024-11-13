@@ -10,7 +10,7 @@ const connect = async () : Promise<void> => {
 connect()
 
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5003;
  
 
 const server = app.listen(PORT, () => {

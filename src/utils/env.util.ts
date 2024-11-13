@@ -1,4 +1,4 @@
-import {ENVType} from "./enum.utils";
+import {ENVType} from "./enum.util";
 
 class AppEnv {
     constructor () {

@@ -1,6 +1,6 @@
 import mongoose, { ConnectOptions } from "mongoose";
 import colors from "colors";
-import { ENVType } from "../utils/enum.utils";
+import { ENVType } from "../utils/enum.util";
 
 const options: ConnectOptions = {
   autoIndex: true,
