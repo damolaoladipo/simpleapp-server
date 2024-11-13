@@ -1,0 +1,11 @@
+[
+    {
+      "name": "superadmin",
+      "description": "Superadmin can access and do anything in the system"
+    },
+    {
+      "name": "user",
+      "description": "users can access and use the platform features to manage their incmome and expense"
+    }
+  ]
+  
