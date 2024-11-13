@@ -9,10 +9,14 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import expressSanitize from "express-mongo-sanitize";
 import { limitRequests } from "../middlewares/ratelimit.mdw";
+import bodyParser from "body-parser";
 
 config()
 
 const app = express()
+
+app.use(bodyParser.json({ limit: "50mb", inflate: true }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 app.use(cookieParser());
 
