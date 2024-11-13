@@ -1,11 +1,11 @@
 
 <img src="simple-dark.png" alt="Simple.io Logo" width="350">
 
-## Simple.io Application (Server-Side)
+## Simple Application (Server-Side)
 
 ### Track and manage your finances effortlessly
 
-> Simple.io is an intuitive income and expense tracker designed to help GenZs take control of their finances. With features that allow users to log, categorize, and analyze their spending and income, Simple.io is built as a full-stack web app utilizing Node.js, Express, and MongoDB for the backend, paired with a modern React frontend.
+> Simple is an intuitive income and expense tracker designed to help GenZs take control of their finances. With features that allow users to log, categorize, and analyze their spending and income, Simple.io is built as a full-stack web app utilizing Node.js, Express, and MongoDB for the backend, paired with a modern React frontend.
 
 By using Simple.io, users can gain better insights into their financial habits, helping them make smarter decisions and build healthier financial practices.
 
