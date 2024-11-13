@@ -1,5 +1,6 @@
 
-<img src="simple-dark.png" alt="Simple.io Logo" width="250">
+<img src="simple-dark.png" alt="Simple.io Logo" width="150">
+=======
 
 ## Simple.io Application (Server-Side)
 
