@@ -1,19 +1,19 @@
 
-<img src="simple-dark.png" alt="Simple.io Logo" width="350">
+<img src="simple-dark.png" alt="Simple Logo" width="400">
 
 ## Simple Application (Server-Side)
 
 ### Track and manage your finances effortlessly
 
-> Simple is an intuitive income and expense tracker designed to help GenZs take control of their finances. With features that allow users to log, categorize, and analyze their spending and income, Simple.io is built as a full-stack web app utilizing Node.js, Express, and MongoDB for the backend, paired with a modern React frontend.
+> Simple is an intuitive income and expense tracker designed to help GenZs take control of their finances. With features that allow users to log, categorize, and analyze their spending and income, Simple is built as a full-stack web app utilizing Node.js, Express, and MongoDB for the backend, paired with a modern React frontend.
 
-By using Simple.io, users can gain better insights into their financial habits, helping them make smarter decisions and build healthier financial practices.
+By using Simple, users can gain better insights into their financial habits, helping them make smarter decisions and build healthier financial practices.
 
 ## Introduction
 
 Many GenZ individuals face challenges in keeping track of their income and expenses, often leading to poor financial management and unplanned overspending. Traditional budgeting tools can be overly complicated, lacking the simplicity and engagement that GenZ users prefer. 
 
-Simple.io addresses these pain points by providing a streamlined, easy-to-use platform where users can track their earnings, monitor their expenses, and set budgeting goals. The app focuses on delivering a minimalist and engaging user experience, making financial management accessible and fun.
+Simple addresses these pain points by providing a streamlined, easy-to-use platform where users can track their earnings, monitor their expenses, and set budgeting goals. The app focuses on delivering a minimalist and engaging user experience, making financial management accessible and fun.
 
 ## Core Features
 
