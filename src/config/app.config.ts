@@ -8,6 +8,7 @@ import ENV from "../utils/env.utils";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import expressSanitize from "express-mongo-sanitize";
+import { limitRequests } from "../middlewares/ratelimit.mdw";
 
 config()
 
