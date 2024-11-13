@@ -1,6 +1,8 @@
 import { config } from "dotenv";
 import express, { Request, Response, NextFunction } from "express";
 import cors from 'cors'
+import errorHandler from "../middlewares/error.mdw";
+import helmet from "helmet";
 
 config()
 
