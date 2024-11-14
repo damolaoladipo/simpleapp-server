@@ -2,7 +2,7 @@ import mongoose, { Schema, Types, Model } from "mongoose";
 import { IRoleDoc } from "../utils/interface.util";
 import slugify from "slugify";
 
-const RolesSchema = new mongoose.Schema(
+const RoleSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -35,23 +35,32 @@ const RolesSchema = new mongoose.Schema(
     },
   }
 );
-RolesSchema.set("toJSON", { virtuals: true, getters: true });
-RolesSchema.pre<IRoleDoc>("save", async function (next) {
+RoleSchema.set("toJSON", { virtuals: true, getters: true });
+
+
+RoleSchema.pre<IRoleDoc>("insertMany", async function (next) {
   this.slug = slugify(this.name, { lower: true, replacement: "-" });
   next();
 });
-RolesSchema.pre<IRoleDoc>("insertMany", async function (next) {
+
+
+RoleSchema.pre<IRoleDoc>("save", async function (next) {
   this.slug = slugify(this.name, { lower: true, replacement: "-" });
   next();
 });
-RolesSchema.methods.getAll = async function () {
-  return Role.find({});
-};
-RolesSchema.statics.findByName = async function (name: string) {
-  const role = Role.findOne({ name });
-  return role ?? null;
+
+
+RoleSchema.statics.getAll = async () => {
+  return await Role.find({});
 };
 
-const Role: Model<IRoleDoc> = mongoose.model<IRoleDoc>("Role", RolesSchema);
+
+RoleSchema.methods.findByName = async (name: string) => {
+  const role = await Role.findOne({ name: name });
+  return role ? role : null;
+};
+
+
+const Role: Model<IRoleDoc> = mongoose.model<IRoleDoc>("Role", RoleSchema);
 
 export default Role;

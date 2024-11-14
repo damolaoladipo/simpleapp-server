@@ -19,6 +19,7 @@ export interface IRoleDoc extends Document {
 
 
 export interface IUserDoc extends Document  {
+    avatar: string,
     username:  string,
     firstName: string
     lastName: string
@@ -27,6 +28,9 @@ export interface IUserDoc extends Document  {
     savedPassword: string;
     passwordType: string;
     userType: string;
+
+    slug: string,
+    roles: Array<ObjectId | any>;
   
     activationToken: String;
     activationTokenExpire: Date;
@@ -37,8 +41,10 @@ export interface IUserDoc extends Document  {
     isSuper: boolean;
     isUser: boolean;
 
-    matchPassword: (password: string) => boolean;
-    getAuthToken: () => string;
-    getRefreshToken: () => string;
+
+    getAll(): Array<IUserDoc>;
+    findById(id: any):  IUserDoc | null;
+    matchPassword(password: string): Promise<boolean>,
+    getAuthToken(): Promise<string>
   
 }
