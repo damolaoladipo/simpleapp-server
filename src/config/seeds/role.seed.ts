@@ -10,12 +10,12 @@ const rolesData = JSON.parse(
 
 export const seedRoles = async () => {
     try {
-        const roles: IRoleDoc[] = await Role.find({});
+        const roles: Array<IRoleDoc> = await Role.find({});
         if (roles.length === 0) {
           const seed = await Role.insertMany(rolesData);
 
           if (seed) {
-            console.log({ data: `roles seeded successfully`, type: `info` });
+            console.log({ data: `Roles seeded successfully`, type: `Success` });
           }
 
             for (let item of rolesData) {

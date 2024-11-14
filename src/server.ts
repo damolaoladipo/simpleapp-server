@@ -2,12 +2,16 @@ import app from "./config/app.config";
 import colors from "colors";
 import connectDB from "./config/db.config";
 import seedData from "./config/seeds/seeder.seed";
+import { setupCleanupJob } from "./cron-jobs/tmp-cleanup";
+import path from "path";
+
 
 
 const connect = async () : Promise<void> => {
 
     await connectDB()
     await seedData()
+    setupCleanupJob(path.join(__dirname, "config", "tmp"));
 }
 connect()
 
