@@ -102,3 +102,12 @@ export interface IReportDoc extends Document {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export interface INotificationDoc extends Document {
+  userId: ObjectId;
+  message: string;
+  type: string;
+  isRead: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
