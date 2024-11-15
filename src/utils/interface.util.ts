@@ -82,3 +82,13 @@ export interface IBudgetDoc extends Document {
   updatedAt?: Date;
 }
 
+export interface IAchievementDoc extends Document {
+  userId: ObjectId;
+  title: string;
+  description: string;
+  date: Date;
+  category: string;
+  tags?: string[];
+  createdAt?: Date;
+  updatedAt?: Date;
+}
