@@ -60,13 +60,13 @@ export interface ITransactionDoc extends Document {
   category: string
   date: Date
   time: string
-  description: string
   paymentMethod: 'cash' | 'credit card' | 'bank transfer' | 'mobile payment'
   status: 'completed' | 'pending' | 'failed'
   currency: string
   reference: string;
-  createdAt: Date;
-  updatedAt: Date;
+  description?: string
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface IBudgetDoc extends Document {
