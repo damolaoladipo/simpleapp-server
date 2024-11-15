@@ -111,3 +111,16 @@ export interface INotificationDoc extends Document {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface IUserProfileDoc extends Document {
+  userId: ObjectId;
+  firstName: string;
+  lastName: string;
+  email: string;
+  bio: string;
+  avatarUrl: string;
+  phone: string;
+  address: string;
+  updatedAt: Date;
+  createdAt: Date;
+}
