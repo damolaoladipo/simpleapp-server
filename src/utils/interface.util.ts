@@ -68,3 +68,17 @@ export interface ITransactionDoc extends Document {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface IBudgetDoc extends Document {
+  userId: ObjectId;
+  title: string;
+  amount: number;
+  category: string;
+  startDate: Date;
+  endDate: Date;
+  description?: string;
+  tags?: string[];
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
