@@ -29,6 +29,10 @@ export interface IUserDoc extends Document  {
     passwordType: string;
     userType: string;
 
+    createdAt: string
+    badges: string
+    achievement: string
+
     slug: string,
     roles: Array<ObjectId | any>;
   
@@ -47,4 +51,20 @@ export interface IUserDoc extends Document  {
     matchPassword(password: string): Promise<boolean>,
     getAuthToken(): Promise<string>
   
+}
+
+export interface ITransactionDoc extends Document {
+  userId: ObjectId
+  type: 'income' | 'expense'
+  amount: number
+  category: string
+  date: Date
+  time: string
+  description: string
+  paymentMethod: 'cash' | 'credit card' | 'bank transfer' | 'mobile payment'
+  status: 'completed' | 'pending' | 'failed'
+  currency: string
+  reference: string;
+  createdAt: Date;
+  updatedAt: Date;
 }

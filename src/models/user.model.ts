@@ -8,8 +8,8 @@ import jwt from "jsonwebtoken";
 const UserSchema = new Schema<IUserDoc>({
   username: {
     type: String,
-    req: [true, "username already exits"],
-    maxLength: [12, "username cannot be more than 8 characters"],
+    required: [true, "Username is required"],
+    minLength: [6, "username cannot be more than 6 characters"],
   },
 
   firstName: {
@@ -24,11 +24,22 @@ const UserSchema = new Schema<IUserDoc>({
     type: String,
     required: [true, "Email is required"],
     unique: true,
+    lowercase: true,
     match: [/.+\@.+\..+/, "Please enter a valid email address"],
   },
   password: {
     type: String,
-    required: true,
+    required: [true, "Password is required"],
+  },
+
+  badges: {
+    type: String,
+    default: ""
+  },
+
+  achievement: {
+    type: String,
+    default: "",
   },
 
   savedPassword: String,
