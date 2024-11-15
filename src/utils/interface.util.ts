@@ -92,3 +92,13 @@ export interface IAchievementDoc extends Document {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export interface IReportDoc extends Document {
+  userId: ObjectId;
+  title: string;
+  description: string;
+  status: "pending" | "resolved" | "rejected";
+  category: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
