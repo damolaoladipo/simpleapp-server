@@ -1,4 +1,3 @@
-// controllers/notification.controller.ts
 import { Request, Response, NextFunction } from 'express';
 import asyncHandler from '../middlewares/async.mdw';
 import NotificationModel from '../models/notification.model';
