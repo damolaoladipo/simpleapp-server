@@ -10,6 +10,7 @@ import morgan from "morgan";
 import expressSanitize from "express-mongo-sanitize";
 import { limitRequests } from "../middlewares/ratelimit.mdw";
 import bodyParser from "body-parser";
+import v1Routes from "../routes/routes.router";
 
 config()
 
@@ -68,11 +69,13 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
       data: { name: "SimpleApp API", 
         version: "1.0.0" 
       },
-      message: 'SimpleApp api v1.0.0 is healthy',
+      message: 'SimpleApp api v1.0.0 is in good health',
       status: 200,
     });
   });
   
+
+app.use("/v1", v1Routes);
 
 app.use(errorHandler);
 
