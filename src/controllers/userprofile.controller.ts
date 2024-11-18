@@ -11,7 +11,7 @@ import ErrorResponse from '../utils/error.util';
 export const createOrUpdateUserProfile = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const { userId } = req.params;
-    const { displayName, email, bio, avatarUrl, phone, address } = req.body;
+    const { displayName, firstName, lastName, email, bio, avatar, phone, address } = req.body;
 
     let userProfile = await UserProfileModel.findOne({ userId });
 
@@ -19,11 +19,11 @@ export const createOrUpdateUserProfile = asyncHandler(
       userProfile = new UserProfileModel({
         userId,
         displayName,
+        firstName,
+        lastName,
         email,
         bio,
-        avatarUrl,
-        phone,
-        address,
+        avatar,
       });
 
       await userProfile.save();
@@ -36,11 +36,12 @@ export const createOrUpdateUserProfile = asyncHandler(
       });
     }
     userProfile.displayName = displayName;
+    userProfile.firstName = firstName;
+    userProfile.lastName = lastName;
     userProfile.email = email;
     userProfile.bio = bio;
-    userProfile.avatarUrl = avatarUrl;
-    userProfile.phone = phone;
-    userProfile.address = address;
+    userProfile.avatar = avatar;
+  
 
     await userProfile.save();
     return res.status(200).json({

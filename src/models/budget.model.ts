@@ -12,7 +12,15 @@ const BudgetSchema = new Schema<IBudgetDoc>(
     description: { type: String },
     tags: { type: [String] },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    versionKey: "_version",
+    toJSON: {
+      transform(doc: any, ret) {
+        ret.id = ret._id;
+      },
+    },
+  }
 );
 
 const Budget = model<IBudgetDoc>("Budget", BudgetSchema);

@@ -10,7 +10,15 @@ const AchievementSchema = new Schema<IAchievementDoc>(
     category: { type: String, required: true },
     tags: { type: [String] },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    versionKey: "_version",
+    toJSON: {
+      transform(doc: any, ret) {
+        ret.id = ret._id;
+      },
+    },
+  }
 );
 
 const Achievement = model<IAchievementDoc>("Achievement", AchievementSchema);

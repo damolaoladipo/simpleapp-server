@@ -1,4 +1,3 @@
-// models/notification.model.ts
 import mongoose, { Schema, Document } from 'mongoose';
 import { INotificationDoc } from "../utils/interface.util";
 
@@ -9,7 +8,15 @@ const notificationSchema: Schema = new Schema<INotificationDoc>(
         type: { type: String, enum: ['info', 'warning', 'error'], default: 'info' },
         isRead: { type: Boolean, default: false },
     },
-    { timestamps: true }
+    {
+        timestamps: true,
+        versionKey: "_version",
+        toJSON: {
+          transform(doc: any, ret) {
+            ret.id = ret._id;
+          },
+        },
+      }
 );
 
 const NotificationModel = mongoose.model<INotificationDoc>('Notification', notificationSchema);
