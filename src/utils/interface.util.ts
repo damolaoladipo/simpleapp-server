@@ -21,8 +21,7 @@ export interface IRoleDoc extends Document {
 export interface IUserDoc extends Document  {
     avatar: string,
     username:  string,
-    firstName: string
-    lastName: string
+    displayName: string
     email: string,
     password: string
     savedPassword: string;
@@ -114,8 +113,7 @@ export interface INotificationDoc extends Document {
 
 export interface IUserProfileDoc extends Document {
   userId: ObjectId;
-  firstName: string;
-  lastName: string;
+  displayName: string;
   email: string;
   bio: string;
   avatarUrl: string;
@@ -123,4 +121,19 @@ export interface IUserProfileDoc extends Document {
   address: string;
   updatedAt: Date;
   createdAt: Date;
+}
+
+export interface IRegister {
+    username:  string,
+    displayName: string
+    email: string,
+    password: string
+    userType: string;
+}
+
+export interface IResult {
+  error: boolean;
+  message: string;
+  code: number;
+  data: any;
 }

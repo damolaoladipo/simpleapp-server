@@ -4,7 +4,8 @@ export enum ENVType {
     DEVELOPMENT = 'development'
     }
 
-    export enum UserRole {
-        USER = 'user',
+    export enum UserType {
+        SUPER = "superadmin",
         ADMIN = 'admin',
+        USER = 'user'
     }

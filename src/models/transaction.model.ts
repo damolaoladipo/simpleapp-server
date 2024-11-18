@@ -11,9 +11,9 @@ const transactionSchema = new Schema<ITransactionDoc>(
       required: true,
     },
     amount: { type: Number, required: true },
-    category: { type: String, required: true }, // e.g., "salary", "rent"
+    category: { type: String, required: true }, 
     date: { type: Date, required: true },
-    time: { type: String, default: () => new Date().toLocaleTimeString() }, // Optional time field
+    time: { type: String, default: () => new Date().toLocaleTimeString() },
     description: { type: String },
     paymentMethod: {
       type: String,
