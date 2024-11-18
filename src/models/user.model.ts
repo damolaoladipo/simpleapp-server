@@ -1,4 +1,4 @@
-import mongoose, { model, Schema, Types } from "mongoose";
+import mongoose, { Schema, Types } from "mongoose";
 import {IUserDoc } from "../utils/interface.util";
 import slugify from "slugify";
 import bcrypt, { genSalt, compare } from "bcrypt";
@@ -9,17 +9,8 @@ const UserSchema = new Schema<IUserDoc>({
   username: {
     type: String,
     required: [true, "Username is required"],
-    minLength: [6, "username cannot be more than 6 characters"],
+    minLength: [6, "username cannot be less than 6 characters"],
   },
-
-  firstName: {
-    type: String,
-  },
-
-  lastName: {
-    type: String,
-  },
-
   email: {
     type: String,
     required: [true, "Email is required"],
@@ -42,8 +33,17 @@ const UserSchema = new Schema<IUserDoc>({
     default: "",
   },
 
-  savedPassword: String,
-  passwordType: String,
+  roles: [
+    {
+      type: Schema.Types.Mixed,
+      ref: "Role",
+    },
+  ],
+  slug: {
+    type: String,
+    default: "",
+  }, 
+  
   userType: String,
 
   activationToken: String,
@@ -52,13 +52,8 @@ const UserSchema = new Schema<IUserDoc>({
   resetPasswordToken: String,
   resetPasswordTokenExpire: Date,
 
-  roles: [
-    {
-      type: Schema.Types.Mixed,
-      ref: "Role",
-    },
-  ],
 },
+
 {
   timestamps: true,
   versionKey: "_version",
@@ -94,7 +89,7 @@ UserSchema.methods.matchPassword = async function (password: string) {
 
 UserSchema.methods.getAuthToken = async function () {
   const secret = process.env.JWT_ACCESS_SECRET;
-  const expire = process.env.JWT_ACCESS_EXPIRY;
+  const expire = process.env.JWT_ACCESS_EXPIRY || '2h';
   let token: string = "";
 
   if (secret) {
@@ -114,36 +109,13 @@ UserSchema.methods.getAuthToken = async function () {
 };
 
 
-
-UserSchema.statics.getUsers = async () => {
-  return await User.find({});
-};
-
-UserSchema.methods.getRefreshToken = async function () {
-  const secret = process.env.JWT_REFRESH_SECRET;
-  const expire = process.env.JWT_REFRESH_EXPIRY;
-  let token: string = "";
-  let payload = {
-    id: this._id,
-    email: this.email,
-  };
-  if (secret) {
-    token = await jwt.sign(payload, secret, {
-      algorithm: "HS512",
-      expiresIn: expire,
-    });
-  }
-
-  return token;
-};
-
 UserSchema.statics.getUsers = async () => {
   return await User.find({});
 };
 
 UserSchema.methods.findById = async (id: any) => {
   const user = await User.findOne({ _id: id });
-  return User ? User : null;
+  return user ? user : null;
 };
 
 const User = mongoose.model<IUserDoc>("user", UserSchema);

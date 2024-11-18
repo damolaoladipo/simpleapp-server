@@ -19,22 +19,17 @@ export interface IRoleDoc extends Document {
 
 
 export interface IUserDoc extends Document  {
-    avatar: string,
     username:  string,
     displayName: string
     email: string,
     password: string
-    savedPassword: string;
-    passwordType: string;
-    userType: string;
-
-    createdAt: string
     badges: string
     achievement: string
-
-    slug: string,
     roles: Array<ObjectId | any>;
-  
+    slug: string,
+    userType: string;
+    
+    
     activationToken: String;
     activationTokenExpire: Date;
   
@@ -44,6 +39,9 @@ export interface IUserDoc extends Document  {
     isSuper: boolean;
     isUser: boolean;
 
+    
+    createdAt: Date;
+    updatedAt: Date;
 
     getAll(): Array<IUserDoc>;
     findById(id: any):  IUserDoc | null;
@@ -55,17 +53,14 @@ export interface IUserDoc extends Document  {
 export interface ITransactionDoc extends Document {
   userId: ObjectId
   type: 'income' | 'expense'
+  description: string
   amount: number
   category: string
-  date: Date
-  time: string
   paymentMethod: 'cash' | 'credit card' | 'bank transfer' | 'mobile payment'
   status: 'completed' | 'pending' | 'failed'
   currency: string
-  reference: string;
-  description?: string
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface IBudgetDoc extends Document {
@@ -77,8 +72,8 @@ export interface IBudgetDoc extends Document {
   endDate: Date;
   description?: string;
   tags?: string[];
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface IAchievementDoc extends Document {
@@ -88,18 +83,17 @@ export interface IAchievementDoc extends Document {
   date: Date;
   category: string;
   tags?: string[];
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface IReportDoc extends Document {
   userId: ObjectId;
   title: string;
   description: string;
-  status: "pending" | "resolved" | "rejected";
   category: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface INotificationDoc extends Document {
@@ -114,11 +108,11 @@ export interface INotificationDoc extends Document {
 export interface IUserProfileDoc extends Document {
   userId: ObjectId;
   displayName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   bio: string;
-  avatarUrl: string;
-  phone: string;
-  address: string;
+  avatar: string;
   updatedAt: Date;
   createdAt: Date;
 }

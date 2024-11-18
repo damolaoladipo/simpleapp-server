@@ -10,15 +10,13 @@ const transactionSchema = new Schema<ITransactionDoc>(
       enum: ["income", "expense"],
       required: true,
     },
-    amount: { type: Number, required: true },
-    category: { type: String, required: true }, 
-    date: { type: Date, required: true },
-    time: { type: String, default: () => new Date().toLocaleTimeString() },
     description: { type: String },
+    amount: { type: Number, required: true },
+    category: { type: String, }, 
     paymentMethod: {
       type: String,
       enum: ["cash", "credit card", "bank transfer", "mobile payment"],
-      default: "cash",
+      default: "bank transfer",
     },
     status: {
       type: String,
@@ -26,7 +24,6 @@ const transactionSchema = new Schema<ITransactionDoc>(
       default: "completed",
     },
     currency: { type: String, default: "NGN" },
-    reference: { type: String, unique: true, required: true }
   },
   { 
     timestamps: true,
@@ -38,14 +35,6 @@ const transactionSchema = new Schema<ITransactionDoc>(
     },
    }
 );
-
-
-transactionSchema.pre("save", function (next) {
-  if (!this.reference) {
-    this.reference = `txn_${Date.now()}`;
-  }
-  next();
-});
 
 const Transaction: Model<ITransactionDoc> = model<ITransactionDoc>(
     "Transaction",
