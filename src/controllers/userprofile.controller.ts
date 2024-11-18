@@ -11,15 +11,14 @@ import ErrorResponse from '../utils/error.util';
 export const createOrUpdateUserProfile = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const { userId } = req.params;
-    const { firstName, lastName, email, bio, avatarUrl, phone, address } = req.body;
+    const { displayName, email, bio, avatarUrl, phone, address } = req.body;
 
     let userProfile = await UserProfileModel.findOne({ userId });
 
     if (!userProfile) {
       userProfile = new UserProfileModel({
         userId,
-        firstName,
-        lastName,
+        displayName,
         email,
         bio,
         avatarUrl,
@@ -36,9 +35,7 @@ export const createOrUpdateUserProfile = asyncHandler(
         status: 201,
       });
     }
-
-    userProfile.firstName = firstName;
-    userProfile.lastName = lastName;
+    userProfile.displayName = displayName;
     userProfile.email = email;
     userProfile.bio = bio;
     userProfile.avatarUrl = avatarUrl;
@@ -91,7 +88,7 @@ export const deleteUserProfile = asyncHandler(
       return next(new ErrorResponse("User profile not found", 404, []));
     }
 
-    return res.status(204).json({
+    return res.status(200).json({
       error: false,
       errors: [],
       status: 204,

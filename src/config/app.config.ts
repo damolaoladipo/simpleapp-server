@@ -16,8 +16,12 @@ config()
 
 const app = express()
 
-app.use(bodyParser.json({ limit: "50mb", inflate: true }));
-app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+app.set('json spaces', 2)
+
+// app.use(bodyParser.json({ limit: "50mb", inflate: true }));
+// app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 app.use(cookieParser());
 
@@ -35,6 +39,7 @@ app.use(limitRequests);
 app.use(cors({ origin: true, credentials: true }));
 
 app.use((req: Request, res: Response, next: NextFunction) => {
+    res.header("Content-Type", "application/json");
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
       "Access-Control-Allow-Origin",
@@ -44,13 +49,13 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       "Access-Control-Allow-Origin",
       "x-acess-token, origin, X-Requested-With, Content-Type, Accept"
     );
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0')
     next();
   });
   
   
-
-app.use(express.json({ limit: "50mb" }));
-
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
   
     let environment = ENVType.DEVELOPMENT

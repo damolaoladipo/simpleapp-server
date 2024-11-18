@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import UserModel from '../models/user.model'; 
-import Role from '../models/role.model';
 import bcrypt from 'bcrypt';
 import asyncHandler from '../middlewares/async.mdw'; 
 import ErrorResponse from '../utils/error.util'; 

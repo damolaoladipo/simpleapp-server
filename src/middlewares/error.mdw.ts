@@ -43,7 +43,7 @@ const errorHandler = (err: any, req: Request, res: Response, next: NextFunction)
         error = new ErrorResponse(message, 500, errors);
     }
 
-    res.status(500).json({
+    res.status(error.statusCode || 500).json({
         error: true,
         errors: error.errors ? error.errors : [],
         data: error.data ? error.data : {},

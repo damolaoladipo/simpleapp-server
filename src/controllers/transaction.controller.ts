@@ -12,9 +12,20 @@ import ErrorResponse from "../utils/error.util";
  */
 export const createTransaction = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const { userId, type, amount, category, date, description, paymentMethod, currency, tags } = req.body;
+    const { 
+      userId,
+      type, 
+      amount, 
+      category, 
+      date, 
+      description, 
+      paymentMethod, 
+      currency, 
+      tags } = req.body;
 
-    if (!userId || !type || !amount || !category) {
+      console.log(req.body)
+
+    if (!userId || !type || !amount || !category || !date || !description || !paymentMethod || !currency) {
       return next(new ErrorResponse("Missing required fields", 400, []));
     }
 
@@ -28,6 +39,7 @@ export const createTransaction = asyncHandler(
       paymentMethod,
       currency,
       tags,
+      reference: `${type.toUpperCase()}-${date.replace(/-/g, "")}`
     });
 
     return res.status(201).json({
@@ -96,57 +108,6 @@ export const getTransactionById = asyncHandler(
 );
 
 /**
- * @name updateTransaction
- * @description Update a Transaction
- * @route PUT /transaction/:id
- * @access Public
- */
-export const updateTransaction = asyncHandler(
-  async (req: Request, res: Response, next: NextFunction) => {
-    const { id } = req.params;
-    const updates = req.body;
-
-    const updatedTransaction = await Transaction.findByIdAndUpdate(id, updates, { new: true });
-
-    if (!updatedTransaction) {
-      return next(new ErrorResponse("Transaction not found", 404, []));
-    }
-
-    return res.status(200).json({
-      error: false,
-      errors: [],
-      status: 200,
-      message: "Transaction updated successfully",
-      data: updatedTransaction,
-    });
-  }
-);
-
-/**
- * @name deleteTransaction
- * @description Delete a transaction
- * @route DELETE /transaction/:id/
- * @access Public
- */
-export const deleteTransaction = asyncHandler(
-  async (req: Request, res: Response, next: NextFunction) => {
-    const { id } = req.params;
-
-    const deletedTransaction = await Transaction.findByIdAndDelete(id);
-    if (!deletedTransaction) {
-      return next(new ErrorResponse("Transaction not found", 404, []));
-    }
-
-    return res.status(200).json({
-      error: false,
-      errors: [],
-      status: 200,
-      message: "Transaction deleted successfully",
-    });
-  }
-);
-
-/**
  * @name getTransactionsByType
  * @description Get all transactions of a specific type (either "income" or "expense") for a specific user.
  * @route GET /transactions/type?type=income
@@ -207,3 +168,55 @@ export const getTransactionsByCategory = asyncHandler(
     });
   }
 );
+
+/**
+ * @name updateTransaction
+ * @description Update a Transaction
+ * @route PUT /transaction/:id
+ * @access Public
+ */
+export const updateTransaction = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+    const updates = req.body;
+
+    const updatedTransaction = await Transaction.findByIdAndUpdate(id, updates, { new: true });
+
+    if (!updatedTransaction) {
+      return next(new ErrorResponse("Transaction not found", 404, []));
+    }
+
+    return res.status(200).json({
+      error: false,
+      errors: [],
+      status: 200,
+      message: "Transaction updated successfully",
+      data: updatedTransaction,
+    });
+  }
+);
+
+/**
+ * @name deleteTransaction
+ * @description Delete a transaction
+ * @route DELETE /transaction/:id/
+ * @access Public
+ */
+export const deleteTransaction = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+
+    const deletedTransaction = await Transaction.findByIdAndDelete(id);
+    if (!deletedTransaction) {
+      return next(new ErrorResponse("Transaction not found", 404, []));
+    }
+
+    return res.status(200).json({
+      error: false,
+      errors: [],
+      status: 200,
+      message: "Transaction deleted successfully",
+    });
+  }
+);
+

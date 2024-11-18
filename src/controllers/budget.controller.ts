@@ -3,6 +3,7 @@ import asyncHandler from "../middlewares/async.mdw";
 import Budget from "../models/budget.model";
 import { IBudgetDoc } from "../utils/interface.util";
 import ErrorResponse from "../utils/error.util";
+import mongoose from "mongoose";
 
 /**
  * @name createBudget
@@ -16,6 +17,10 @@ export const createBudget = asyncHandler(async (req: Request, res: Response) => 
 
   if (!userId || !title || !amount || !category || !startDate || !endDate) {
     throw new ErrorResponse("Missing required fields", 400, []);
+  }
+
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    throw new ErrorResponse("Invalid user ID", 400, []);
   }
 
   const newBudget: IBudgetDoc = await Budget.create({
@@ -44,6 +49,10 @@ export const createBudget = asyncHandler(async (req: Request, res: Response) => 
  */
 export const getUserBudgets = asyncHandler(async (req: Request, res: Response) => {
   const { userId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    throw new ErrorResponse("Invalid user ID", 400, []);
+  }
 
   const budgets = await Budget.find({ userId }).sort({ createdAt: -1 });
 

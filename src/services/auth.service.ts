@@ -40,6 +40,7 @@ class AuthService {
     if (!isPasswordCorrect) {
       return this.handleInvalidCredentials(result);
     }
+    result.data = { userId: user._id}
     return result
   }
 

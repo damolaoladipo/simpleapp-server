@@ -1,6 +1,7 @@
 import Role from "../models/role.model";
 import User from "../models/user.model";
 import { UserType } from "../utils/enum.util";
+import ErrorResponse from "../utils/error.util";
 import { IRegister } from "../utils/interface.util";
 import { IUserDoc } from "../utils/interface.util";
 
@@ -43,6 +44,13 @@ class UserService {
       userType,
       username,
     } = data;
+
+    if (!this.checkEmail(email)) {
+      throw new ErrorResponse("Invalid email format", 400, []);
+    }
+    if (!this.checkPassword(password)) {
+      throw new ErrorResponse("Password does not meet criteria", 400, []);
+    }
 
     const user = await User.create({
       email: email,

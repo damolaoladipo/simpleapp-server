@@ -1,0 +1,181 @@
+[{
+  "username": "heyDamola",
+  "displayName": "Damola Oaldipo",
+  "email": "iam@damolaoladipo.com",
+  "password": "JTBD#4321"
+},
+{
+  
+  "username": "heyDML",
+  "displayName": "Damola Oaldipo",
+  "email": "odamola@mit.edu",
+  "password": "heyJTBD#4321"
+},
+
+{
+  "userId": "673b168d1c5fdb2dd2adf3ea",
+
+  "userId": "673b0025580d1e56b49d0066"
+},
+[
+  {
+    "userId": "673b168d1c5fdb2dd2adf3ea",
+    "type": "income",
+    "amount": 75000,
+    "category": "salary",
+    "date": "2024-11-18",
+    "description": "Monthly salary payment for November",
+    "paymentMethod": "bank transfer",
+    "currency": "NGN",
+    "tags": ["salary", "monthly"]
+  },
+  {
+    "userId": "673b168d1c5fdb2dd2adf3ea",
+    "type": "expense",
+    "amount": 1500,
+    "category": "transportation",
+    "date": "2024-11-17",
+    "description": "Bus fare from home to office",
+    "paymentMethod": "mobile payment",
+    "currency": "NGN",
+    "tags": ["transportation", "daily commute"]
+  },
+  {
+    "userId": "673b168d1c5fdb2dd2adf3ea",
+    "type": "income",
+    "amount": 12000,
+    "category": "freelance",
+    "date": "2024-11-16",
+    "description": "Payment for freelance web development work",
+    "paymentMethod": "mobile payment",
+    "currency": "NGN",
+    "tags": ["freelance", "web development"]
+  },
+  {
+    "userId": "673b168d1c5fdb2dd2adf3ea",
+    "type": "expense",
+    "amount": 5000,
+    "category": "groceries",
+    "date": "2024-11-15",
+    "description": "Purchase of groceries at local market",
+    "paymentMethod": "cash",
+    "currency": "NGN",
+    "tags": ["groceries", "shopping"]
+  },
+  {
+    "userId": "673b168d1c5fdb2dd2adf3ea",
+    "type": "expense",
+    "amount": 22000,
+    "category": "dining",
+    "date": "2024-11-14",
+    "description": "Dinner at a restaurant in Lagos",
+    "paymentMethod": "credit card",
+    "currency": "NGN",
+    "tags": ["dining", "eating out"]
+
+  },
+  {
+    "userId": "673b168d1c5fdb2dd2adf3ea",
+    "type": "income",
+    "amount": 300000,
+    "category": "business",
+    "date": "2024-11-13",
+    "description": "Payment for business consultancy services",
+    "paymentMethod": "bank transfer",
+    "currency": "NGN",
+    "tags": ["business", "consultancy"]
+
+  },
+  {
+    "userId": "673b168d1c5fdb2dd2adf3ea",
+    "type": "expense",
+    "amount": 8000,
+    "category": "entertainment",
+    "date": "2024-11-12",
+    "description": "Subscription to streaming service",
+    "paymentMethod": "mobile payment",
+    "currency": "NGN",
+    "tags": ["entertainment", "streaming"]
+  }
+]
+
+BUDGET 
+[
+  {
+    "title": "November Salary Budget",
+    "amount": 75000,
+    "category": "salary",
+    "startDate": "2024-11-01",
+    "endDate": "2024-11-30",
+    "description": "Budget allocation for November salary expenses",
+    "tags": ["salary", "monthly", "income"]
+  },
+  {
+    "title": "Grocery Shopping Budget",
+    "amount": 10000,
+    "category": "groceries",
+    "startDate": "2024-11-01",
+    "endDate": "2024-11-30",
+    "description": "Budget for grocery shopping throughout November",
+    "tags": ["groceries", "shopping", "monthly"]
+  },
+  {
+    "title": "Dining Out Budget",
+    "amount": 15000,
+    "category": "dining",
+    "startDate": "2024-11-01",
+    "endDate": "2024-11-30",
+    "description": "Budget allocated for dining out expenses in November",
+    "tags": ["dining", "entertainment", "food"]
+  },
+  {
+    "title": "Business Consultancy Budget",
+    "amount": 300000,
+    "category": "business",
+    "startDate": "2024-11-01",
+    "endDate": "2024-11-30",
+    "description": "Budget for business consultancy services provided this month",
+    "tags": ["business", "consultancy", "professional"]
+  }
+]
+
+
+REPORT
+[
+  {
+    "title": "November Income Report",
+    "amount": 200000,
+    "category": "income",
+    "startDate": "2024-11-01",
+    "endDate": "2024-11-30",
+    "description": "Total income for the month of November, including salary and freelance earnings",
+    "tags": ["income", "monthly", "salary"]
+  },
+  {
+    "title": "November Expenses Report",
+    "amount": 50000,
+    "category": "expenses",
+    "startDate": "2024-11-01",
+    "endDate": "2024-11-30",
+    "description": "Total expenses for November, including groceries, transportation, and entertainment",
+    "tags": ["expenses", "monthly", "transportation", "groceries"]
+  },
+  {
+    "title": "November Freelance Earnings Report",
+    "amount": 12000,
+    "category": "income",
+    "startDate": "2024-11-01",
+    "endDate": "2024-11-30",
+    "description": "Freelance web development earnings for the month of November",
+    "tags": ["income", "freelance", "web development"]
+  },
+  {
+    "title": "November Dining Expenses Report",
+    "amount": 22000,
+    "category": "expense",
+    "startDate": "2024-11-01",
+    "endDate": "2024-11-30",
+    "description": "Dining expenses report for November, including dining out and restaurant costs",
+    "tags": ["expenses", "dining", "entertainment"]
+  }
+]

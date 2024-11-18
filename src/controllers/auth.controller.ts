@@ -54,7 +54,7 @@ export const register = asyncHandler(
       errors: [],
       data: user,
       message:
-        "User registered successfully. Please check your email to activate your account.",
+        "User registered successfully.",
       status: 200,
     });
   }
@@ -79,13 +79,14 @@ export const login = asyncHandler(
 
     const {userId} = validate.data
 
-    const authToken = jwt.sign({ id: userId }, process.env.JWT_ACCESS_SECRET || 'defaultSecret', { expiresIn: '2h' })
+    const authToken = jwt.sign({ id: userId }, process.env.JWT_ACCESS_SECRET || '', { expiresIn: '2h' })
+    console.log(authToken)
 
     res.status(200).json({
       error: false,
       errors: [],
-      data: { authToken: validate.data.authToken },
-      message: "User login successfull",
+      data: { authToken},
+      message: "User login successfully",
       status: 200,
     });
   }
@@ -99,7 +100,7 @@ export const login = asyncHandler(
  * @access  Public
  */
 export const forgotPassword = asyncHandler(
-  async (req: Request, res: Response) => {
+  async (req: Request, res: Response, next: NextFunction) => {
     const { email } = req.body;
 
     const user = await User.findOne({ email });
@@ -111,8 +112,14 @@ export const forgotPassword = asyncHandler(
       expiresIn: '15m',
     });
 
+
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(resetToken as string)
+      .digest("hex");
+
     
-    user.resetPasswordToken = resetToken;
+    user.resetPasswordToken = hashedToken;
     user.resetPasswordTokenExpire = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes from now
     await user.save();
 
@@ -148,7 +155,7 @@ export const forgotPassword = asyncHandler(
  * @access  Public
  */
 export const resetPassword = asyncHandler(
-  async (req: Request, res: Response) => {
+  async (req: Request, res: Response, next: NextFunction) => {
     const { token, id } = req.query; 
     const { newPassword } = req.body;
 
@@ -165,9 +172,7 @@ export const resetPassword = asyncHandler(
     });
 
     if (!user) {
-      return res
-        .status(400)
-        .json({ message: "Invalid or expired password reset token" });
+      return next(new ErrorResponse("Invalid or expired password reset token", 400, []));
     }
 
     user.password = newPassword;
@@ -191,7 +196,7 @@ export const resetPassword = asyncHandler(
  * @route POST /auth/logout
  * @access  Public
  */
-export const logout = (req: Request, res: Response) => {
+export const logout = (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json({ error: false, message: 'Logout successful' });
 };
 
