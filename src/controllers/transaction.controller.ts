@@ -15,31 +15,29 @@ export const createTransaction = asyncHandler(
     const { 
       userId,
       type, 
+      description,
       amount, 
       category, 
-      date, 
-      description, 
       paymentMethod, 
       currency, 
       tags } = req.body;
 
       console.log(req.body)
 
-    if (!userId || !type || !amount || !category || !date || !description || !paymentMethod || !currency) {
+    if (!userId || !type || !amount || !category || !description || !paymentMethod || !currency || !tags)  {
       return next(new ErrorResponse("Missing required fields", 400, []));
     }
 
     const newTransaction: ITransactionDoc = await Transaction.create({
       userId,
       type,
+      description,
       amount,
       category,
-      date,
-      description,
+      status,      
       paymentMethod,
       currency,
       tags,
-      reference: `${type.toUpperCase()}-${date.replace(/-/g, "")}`
     });
 
     return res.status(201).json({
